@@ -1,0 +1,13 @@
+{
+  "name": "atividade-01-servidor-node-mongodb",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Servidor HTTP básico em Node.js com MongoDB para a Atividade 01.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.0.0"
+  }
+}
