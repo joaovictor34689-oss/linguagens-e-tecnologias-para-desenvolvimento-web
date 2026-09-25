@@ -1,5 +1,8 @@
 # Atividade 01 — Servidor Node.js com Docker e MongoDB
 
+**Aluno:** João Victor Crispim Pinheiro  
+**Matrícula:** 2024010275
+
 Esta atividade contém um servidor HTTP simples em Node.js, empacotado com Docker Compose e conectado a um serviço MongoDB.
 
 ## Arquivos
