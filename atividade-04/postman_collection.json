@@ -1,0 +1,167 @@
+{
+  "info": {
+    "_postman_id": "1f868b0b-0d50-43b3-a1a6-4d83bda0b40a",
+    "name": "Atividade 04 — API de tarefas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Criar tarefa",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Preparar a API do trabalho final\",\n  \"description\": \"Validar as operações do CRUD\",\n  \"status\": \"pendente\"\n}"
+        },
+        "url": "{{baseUrl}}/api/tarefas"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"Tarefa criada\", function () { pm.response.to.have.status(201); });",
+            "if (pm.response.code === 201) pm.collectionVariables.set(\"taskId\", pm.response.json().tarefa._id);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Listar tarefas",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/tarefas"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Lista retornada\", function () { pm.response.to.have.status(200); });"]
+        }
+      }]
+    },
+    {
+      "name": "Buscar tarefa por ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/tarefas/{{taskId}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Tarefa encontrada\", function () { pm.response.to.have.status(200); });"]
+        }
+      }]
+    },
+    {
+      "name": "Criar tarefa com título abaixo do limite",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"ab\",\n  \"description\": \"Título abaixo do mínimo\"\n}"
+        },
+        "url": "{{baseUrl}}/api/tarefas"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Schema rejeita título abaixo do mínimo\", function () { pm.response.to.have.status(400); });"]
+        }
+      }]
+    },
+    {
+      "name": "Atualizar tarefa com PUT",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"API do trabalho final atualizada\",\n  \"description\": \"PUT com os campos da tarefa\",\n  \"status\": \"em andamento\"\n}"
+        },
+        "url": "{{baseUrl}}/api/tarefas/{{taskId}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Tarefa atualizada com PUT\", function () { pm.response.to.have.status(200); });"]
+        }
+      }]
+    },
+    {
+      "name": "Atualizar tarefa com PATCH",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"concluída\"\n}"
+        },
+        "url": "{{baseUrl}}/api/tarefas/{{taskId}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Tarefa atualizada com PATCH\", function () { pm.response.to.have.status(200); });"]
+        }
+      }]
+    },
+    {
+      "name": "Rejeitar título inválido na edição",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"ab\"\n}"
+        },
+        "url": "{{baseUrl}}/api/tarefas/{{taskId}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Validação de edição executada\", function () { pm.response.to.have.status(400); });"]
+        }
+      }]
+    },
+    {
+      "name": "Remover tarefa",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/tarefas/{{taskId}}"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"Tarefa removida\", function () { pm.response.to.have.status(204); });"]
+        }
+      }]
+    },
+    {
+      "name": "Rejeitar identificador inválido",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/tarefas/identificador-invalido"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": ["pm.test(\"CastError convertido em resposta 400\", function () { pm.response.to.have.status(400); });"]
+        }
+      }]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3001" },
+    { "key": "taskId", "value": "" }
+  ]
+}
