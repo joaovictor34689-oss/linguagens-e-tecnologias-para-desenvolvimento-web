@@ -6,6 +6,7 @@ Repositório das atividades da disciplina. Cada atividade fica em sua própria p
 
 - [Atividade 01 — Servidor Node.js, Docker e MongoDB](atividade-01/README.md)
 - [Atividade 02 — Operadores e estruturas condicionais](atividade-02/README.md)
+- [Atividade 03 — Gerenciador de tarefas com autenticação](atividade-03/README.md)
 
 ## Fluxo de trabalho
 
