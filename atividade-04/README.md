@@ -50,10 +50,13 @@ curl -X POST http://localhost:3001/api/tarefas \
 
 ## Testes
 
-Execute os testes do schema sem conectar ao banco:
+Execute os testes do schema e do CRUD com um MongoDB temporário:
 
 ```bash
+npm install
 npm test
 ```
 
-Para testar os endpoints com o MongoDB conectado, importe `postman_collection.json` no Postman e execute as requisições na ordem apresentada. A coleção cria uma tarefa, lista e busca os dados, atualiza com `PUT` e `PATCH`, valida entradas inválidas e remove a tarefa.
+Os testes automatizados iniciam um MongoDB temporário, executam o CRUD pela API e validam entradas inválidas, sem precisar de uma URI do Atlas.
+
+Para testar os endpoints no MongoDB Atlas, configure a conexão no `.env`, inicie o servidor e importe `postman_collection.json` no Postman. Execute as requisições na ordem apresentada para criar, listar, buscar, atualizar, validar erros e remover uma tarefa.
