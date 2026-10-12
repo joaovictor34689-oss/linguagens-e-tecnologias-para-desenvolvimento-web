@@ -17,7 +17,7 @@ npm install
 cp .env.example .env
 ```
 
-Adicione `MONGODB_URI` ao `.env` com a string de conexão do seu MongoDB. Não publique esse arquivo.
+O `.env.example` já define uma URI para uma instância local do MongoDB. Se usar o Atlas, substitua o valor de `MONGODB_URI` no `.env` pela sua string de conexão. Não publique esse arquivo.
 
 Inicie o servidor:
 
