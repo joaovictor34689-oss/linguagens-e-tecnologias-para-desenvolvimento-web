@@ -7,7 +7,7 @@ Os três desafios são programas independentes feitos em JavaScript para execuç
 Abra o terminal nesta pasta e rode o arquivo desejado:
 
 - Desafio 1 — IMC: `node desafio-01-imc.js`
-- Desafio 2 — Ano bissexto: `node desafio-02-ano-bissexto.js`
+- Desafio 02 — Ano bissexto: `node desafio-02-ano-bissexto.js`
 - Desafio 3 — Calculadora: `node desafio-03-calculadora-switch.js`
 
 Os programas aceitam números decimais com ponto ou vírgula.
